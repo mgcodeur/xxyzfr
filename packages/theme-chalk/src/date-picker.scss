@@ -1,0 +1,66 @@
+@forward './date-picker/date-table.scss';
+@forward './date-picker/month-table.scss';
+@forward './date-picker/year-table.scss';
+@forward './date-picker/time-spinner.scss';
+@forward './date-picker/picker.scss';
+@forward './date-picker/date-picker.scss';
+@forward './date-picker/date-range-picker.scss';
+@forward './date-picker/time-range-picker.scss';
+@forward './date-picker/time-picker.scss';
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.me-0 {
+    margin-right: 0 !important;
+}
+
+.ms-0 {
+    margin-left: 0 !important;
+}
+
+.mx-px-12 {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+}
+
+.ms-px-12 {
+    margin-left: 12px !important;
+}
+
+.me-px-12 {
+    margin-right: 12px !important;
+}
+
+.el-start-label,
+.el-end-label {
+    color: #202020;
+}
+
+.minus-infinity-button,
+.plus-infinity-button {
+    background-color: #f2f2f8;
+    padding: 4px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--neige, #f2f2f8);
+    cursor: pointer;
+}
+
+.minus-infinity-button.active,
+.plus-infinity-button.active {
+    background-color: #0184ff;
+    color: white;
+}
