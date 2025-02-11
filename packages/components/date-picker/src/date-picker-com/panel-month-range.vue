@@ -405,7 +405,8 @@ const updateStartDate = () => {
   )
 
   const isDateMin = leftDate.value.year() <= new Date(0, 11, 31).getFullYear()
-  const isMaxDate = rightDate.value.year() >= new Date(9999, 11, 31).getFullYear()
+  const isMaxDate =
+    rightDate.value.year() >= new Date(9999, 11, 31).getFullYear()
 
   if (isDateMin && isMaxDate) {
     rightDate.value = rightDate.value.endOf('year')
@@ -434,7 +435,8 @@ const updateEndDate = () => {
     false
   )
 
-  const isDateMax = rightDate.value.year() >= new Date(9999, 11, 31).getFullYear()
+  const isDateMax =
+    rightDate.value.year() >= new Date(9999, 11, 31).getFullYear()
   const isDateMin = leftDate.value.year() <= new Date(0, 11, 31).getFullYear()
 
   if (isDateMax) {
@@ -468,32 +470,32 @@ const isPlusInfinity = () => {
 const clickPrevYear = () => {
   leftPrevYear()
 
-  rangeState.value.selecting = true
-  minDate.value = rightDate.value
-  rangeState.value.endDate = rightDate.value
+  // rangeState.value.selecting = true
+  // minDate.value = rightDate.value
+  // rangeState.value.endDate = rightDate.value
 }
 
 const clickNextPrevYear = () => {
   doNextOnPrevYear()
 
-  rangeState.value.selecting = true
-  minDate.value = rightDate.value
-  rangeState.value.endDate = rightDate.value
+  // rangeState.value.selecting = true
+  // minDate.value = rightDate.value
+  // rangeState.value.endDate = rightDate.value
 }
 
 /* Flèche partie next */
 const clickPrevNextYear = () => {
   doPrevOnNextYear()
 
-  minDate.value = leftDate.value
-  maxDate.value = undefined
-  rangeState.value.selecting = true
+  // minDate.value = leftDate.value
+  // maxDate.value = undefined
+  // rangeState.value.selecting = true
 }
 
 const clickNextYear = () => {
   rightNextYear()
 
-  rangeState.value.selecting = true
-  maxDate.value = undefined
+  // rangeState.value.selecting = true
+  // maxDate.value = undefined
 }
 </script>
