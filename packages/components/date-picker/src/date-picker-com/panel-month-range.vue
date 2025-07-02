@@ -427,33 +427,36 @@ const updateEndDate = () => {
 
   rightDate.value = rightDate.value.endOf('year')
 
-  handleRangePick(
-    {
-      minDate: leftDate.value,
-      maxDate: rightDate.value,
-    },
-    false
-  )
+  const dateMin = minDate.value ?? leftDate.value
 
   const isDateMax =
     rightDate.value.year() >= new Date(9999, 11, 31).getFullYear()
   const isDateMin = leftDate.value.year() <= new Date(0, 11, 31).getFullYear()
 
+  if (isDateMin && isDateMax) {
+    rangeState.value.endDate = rightDate.value.endOf('year')
+    emit('pick', [leftDate.value, rightDate.value])
+    rangeState.value.selecting = false
+
+    return false
+  }
+
   if (isDateMax) {
-    // emit('pick', [leftDate.value, rightDate.value])
     maxDate.value = rightDate.value
     minDate.value = rightDate.value
-    rangeState.value.endDate = rightDate.value.startOf('year')
-    rangeState.value.selecting = true
+    rangeState.value.endDate = rightDate.value
   } else {
     maxDate.value = undefined
     rangeState.value.selecting = true
   }
 
-  if (isDateMin && isDateMax) {
-    rangeState.value.endDate = rightDate.value.endOf('year')
+  leftDate.value = dateMin
+
+  if (minDate.value) {
     emit('pick', [leftDate.value, rightDate.value])
     rangeState.value.selecting = false
+  } else {
+    rangeState.value.selecting = true
   }
 }
 
@@ -469,33 +472,18 @@ const isPlusInfinity = () => {
 /* Flèche partie prev */
 const clickPrevYear = () => {
   leftPrevYear()
-
-  // rangeState.value.selecting = true
-  // minDate.value = rightDate.value
-  // rangeState.value.endDate = rightDate.value
 }
 
 const clickNextPrevYear = () => {
   doNextOnPrevYear()
-
-  // rangeState.value.selecting = true
-  // minDate.value = rightDate.value
-  // rangeState.value.endDate = rightDate.value
 }
 
 /* Flèche partie next */
 const clickPrevNextYear = () => {
   doPrevOnNextYear()
-
-  // minDate.value = leftDate.value
-  // maxDate.value = undefined
-  // rangeState.value.selecting = true
 }
 
 const clickNextYear = () => {
   rightNextYear()
-
-  // rangeState.value.selecting = true
-  // maxDate.value = undefined
 }
 </script>

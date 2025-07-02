@@ -69,7 +69,7 @@
     line-height: 22px;
     text-align: center;
     cursor: pointer;
-    color: getCssVar('text-color', 'regular');
+    color: #202020;
 
     &:hover {
       color: getCssVar('datepicker-hover-text-color');
@@ -107,4 +107,9 @@
   .#{$namespace}-time-panel {
     position: absolute;
   }
+}
+
+.el-date-picker__header {
+  display: flex;
+  align-items: center;
 }

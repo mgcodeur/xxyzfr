@@ -59,7 +59,7 @@
         @touchstart.passive="onTouchStartInput"
         @click.stop
       >
-        <template #prefix>
+        <!-- <template #prefix>
           <el-icon
             v-if="triggerIcon"
             :class="nsInput.e('icon')"
@@ -68,7 +68,7 @@
           >
             <component :is="triggerIcon" />
           </el-icon>
-        </template>
+        </template> -->
         <template #suffix>
           <el-icon
             v-if="showClose && clearIcon"

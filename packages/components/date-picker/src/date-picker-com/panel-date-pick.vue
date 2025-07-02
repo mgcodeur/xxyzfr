@@ -72,7 +72,18 @@
               @click="moveByYear(false)"
             >
               <slot name="prev-year">
-                <el-icon><d-arrow-left /></el-icon>
+                <svg
+                  width="7"
+                  height="12"
+                  viewBox="0 0 7 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.456248 6.00293C0.456248 5.76269 0.543747 5.56348 0.749998 5.37598L5.5625 0.963871C5.725 0.811521 5.91874 0.735352 6.15 0.735352C6.61874 0.735352 7 1.08691 7 1.52637C7 1.74902 6.9 1.94238 6.73125 2.10058L2.45625 6.00879L6.73125 9.90526C6.9 10.0635 7 10.2627 7 10.4795C7 10.919 6.61876 11.2647 6.15 11.2647C5.91874 11.2647 5.725 11.1944 5.5625 11.042L0.749998 6.62988C0.549998 6.44238 0.456248 6.24316 0.456248 6.00293Z"
+                    fill="#908FA0"
+                  />
+                </svg>
               </slot>
             </button>
             <button
@@ -120,7 +131,18 @@
               @click="moveByMonth(true)"
             >
               <slot name="next-month">
-                <el-icon><arrow-right /></el-icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="7"
+                  height="12"
+                  viewBox="0 0 7 12"
+                  fill="none"
+                >
+                  <path
+                    d="M6.54375 5.99707C6.54375 6.23731 6.45625 6.43652 6.25 6.62402L1.4375 11.0361C1.275 11.1885 1.08126 11.2646 0.850002 11.2646C0.381256 11.2646 0 10.9131 0 10.4736C0 10.251 0.1 10.0576 0.26875 9.89942L4.54375 5.99121L0.26875 2.09474C0.1 1.93654 0 1.73734 0 1.52054C0 1.08104 0.381245 0.735339 0.850002 0.735339C1.08126 0.735339 1.275 0.805639 1.4375 0.958039L6.25 5.37012C6.45 5.55762 6.54375 5.75684 6.54375 5.99707Z"
+                    fill="#908FA0"
+                  />
+                </svg>
               </slot>
             </button>
             <button
@@ -131,7 +153,18 @@
               @click="moveByYear(true)"
             >
               <slot name="next-year">
-                <el-icon><d-arrow-right /></el-icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="7"
+                  height="12"
+                  viewBox="0 0 7 12"
+                  fill="none"
+                >
+                  <path
+                    d="M6.54375 5.99707C6.54375 6.23731 6.45625 6.43652 6.25 6.62402L1.4375 11.0361C1.275 11.1885 1.08126 11.2646 0.850002 11.2646C0.381256 11.2646 0 10.9131 0 10.4736C0 10.251 0.1 10.0576 0.26875 9.89942L4.54375 5.99121L0.26875 2.09474C0.1 1.93654 0 1.73734 0 1.52054C0 1.08104 0.381245 0.735339 0.850002 0.735339C1.08126 0.735339 1.275 0.805639 1.4375 0.958039L6.25 5.37012C6.45 5.55762 6.54375 5.75684 6.54375 5.99707Z"
+                    fill="#908FA0"
+                  />
+                </svg>
               </slot>
             </button>
           </span>
@@ -216,12 +249,6 @@ import {
 import { ElIcon } from '@element-plus/components/icon'
 import { isArray, isFunction } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
-import {
-  ArrowLeft,
-  ArrowRight,
-  DArrowLeft,
-  DArrowRight,
-} from '@element-plus/icons-vue'
 import { TOOLTIP_INJECTION_KEY } from '@element-plus/components/tooltip'
 import { panelDatePickProps } from '../props/panel-date-pick'
 import { getValidDateOfMonth, getValidDateOfYear } from '../utils'
