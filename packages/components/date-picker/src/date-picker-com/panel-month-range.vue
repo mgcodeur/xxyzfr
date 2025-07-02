@@ -224,7 +224,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, ref, toRef, unref } from 'vue'
+import { computed, inject, ref, toRef, unref, watch } from 'vue'
 import dayjs from 'dayjs'
 // import ElIcon from '@element-plus/components/icon'
 import { isArray } from '@element-plus/utils'
@@ -271,6 +271,7 @@ const {
   handleRangeConfirm,
   handleShortcutClick,
   onSelect,
+  onReset,
 } = useRangePicker(props, {
   defaultValue,
   leftDate,
@@ -278,6 +279,24 @@ const {
   unit,
   onParsedValueChanged,
 })
+
+// Watcher pour gérer le reset quand le panel se ferme avec une seule date sélectionnée
+watch(
+  () => props.visible,
+  (visible) => {
+    if (!visible) {
+      // Si une seule date est sélectionnée (minDate existe mais pas maxDate)
+      if (minDate.value && !maxDate.value) {
+        minDate.value = undefined
+        maxDate.value = undefined
+        emit('pick', null)
+      } else if (rangeState.value.selecting) {
+        onReset(props.parsedValue)
+        onSelect(false)
+      }
+    }
+  }
+)
 
 const hasShortcuts = computed(() => !!shortcuts.length)
 
