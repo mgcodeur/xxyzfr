@@ -412,6 +412,25 @@ emit('set-picker-option', ['parseUserInput', parseUserInput])
 emit('set-picker-option', ['handleClear', handleClear])
 
 const updateStartDate = () => {
+  // Si -infini est déjà actif
+  if (isMinusInfinity()) {
+    if (
+      rightDate.value.month() !== dayjs().month() ||
+      (rightDate.value.month() === dayjs().month() && dayjs().month() === 11)
+    ) {
+      minDate.value = rightDate.value
+    } else {
+      minDate.value = undefined
+    }
+    rangeState.value.endDate = rightDate.value
+    rangeState.value.selecting = true
+
+    leftDate.value = dayjs().locale(lang.value)
+
+    emit('calendar-change', [null, rightDate.value.toDate()])
+    return
+  }
+
   setMinusInfinityLeftYear()
 
   leftDate.value = leftDate.value.startOf('year')
