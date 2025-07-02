@@ -446,35 +446,40 @@ const updateEndDate = () => {
 
   rightDate.value = rightDate.value.endOf('year')
 
-  const dateMin = minDate.value ?? leftDate.value
-
   const isDateMax =
     rightDate.value.year() >= new Date(9999, 11, 31).getFullYear()
   const isDateMin = leftDate.value.year() <= new Date(0, 11, 31).getFullYear()
 
+  // Cas où aucune date de début n'est sélectionnée : sélectionner décembre 9999 comme début et fin, sélection visible, et permettre de choisir un début
+  if (!minDate.value && isDateMax) {
+    const maxYear = 9999
+    const max = dayjs().year(maxYear).month(11).endOf('month')
+    minDate.value = max
+    maxDate.value = max
+    rangeState.value.endDate = null
+    rangeState.value.selecting = true
+    emit('calendar-change', [max.toDate(), max.toDate()])
+    return
+  }
+
   if (isDateMin && isDateMax) {
+    // Si on a déjà -infini sélectionné, on sélectionne tout
     rangeState.value.endDate = rightDate.value.endOf('year')
     emit('pick', [leftDate.value, rightDate.value])
     rangeState.value.selecting = false
-
     return false
   }
 
   if (isDateMax) {
-    maxDate.value = rightDate.value
-    minDate.value = rightDate.value
-    rangeState.value.endDate = rightDate.value
-  } else {
-    maxDate.value = undefined
+    // Sélectionner seulement le bloc de droite (+infini) à partir d'une date de début existante
+    const endDate = rightDate.value.endOf('year')
+    maxDate.value = endDate
+    rangeState.value.endDate = endDate
     rangeState.value.selecting = true
-  }
-
-  leftDate.value = dateMin
-
-  if (minDate.value) {
-    emit('pick', [leftDate.value, rightDate.value])
-    rangeState.value.selecting = false
+    emit('calendar-change', [minDate.value?.toDate(), endDate.toDate()])
   } else {
+    // Pas encore à +infini, continuer la sélection
+    maxDate.value = undefined
     rangeState.value.selecting = true
   }
 }
