@@ -434,13 +434,13 @@ const updateStartDate = () => {
   setMinusInfinityLeftYear()
 
   leftDate.value = leftDate.value.startOf('year')
-  handleRangePick(
-    {
-      minDate: leftDate.value,
-      maxDate: rightDate.value,
-    },
-    false
-  )
+  // handleRangePick(
+  //   {
+  //     minDate: leftDate.value,
+  //     maxDate: rightDate.value,
+  //   },
+  //   false
+  // )
 
   const isDateMin = leftDate.value.year() <= new Date(0, 11, 31).getFullYear()
   const isMaxDate =
@@ -451,12 +451,21 @@ const updateStartDate = () => {
     rangeState.value.endDate = rightDate.value
     emit('pick', [leftDate.value, rightDate.value])
     rangeState.value.selecting = false
+    return false
   } else {
-    minDate.value = leftDate.value
-    maxDate.value = rightDate.value
-    rangeState.value.endDate = leftDate.value.endOf('year')
-
+    rangeState.value.endDate = leftDate.value.startOf('year')
+    maxDate.value = leftDate.value
     rangeState.value.selecting = true
+  }
+
+  if (!isMinusInfinity()) {
+    return
+  }
+
+  if (minDate.value && maxDate.value) {
+    emit('pick', [maxDate.value, rightDate.value])
+  } else {
+    minDate.value = leftDate.value.startOf('year')
   }
 }
 
@@ -495,7 +504,9 @@ const updateEndDate = () => {
     maxDate.value = endDate
     rangeState.value.endDate = endDate
     rangeState.value.selecting = true
-    emit('calendar-change', [minDate.value?.toDate(), endDate.toDate()])
+    // emit('calendar-change', [minDate.value?.toDate(), endDate.toDate()])
+
+    emit('pick', [minDate.value, endDate])
   } else {
     // Pas encore à +infini, continuer la sélection
     maxDate.value = undefined
