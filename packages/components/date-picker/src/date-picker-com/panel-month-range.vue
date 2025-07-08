@@ -462,14 +462,27 @@ const updateStartDate = () => {
     return
   }
 
+  if (
+    minDate.value &&
+    maxDate.value &&
+    minDate.value.isAfter(rightDate.value)
+  ) {
+    rightDate.value = minDate.value
+  }
+
   if (minDate.value && maxDate.value) {
-    emit('pick', [maxDate.value, rightDate.value])
+    emit('pick', [maxDate.value, minDate.value])
   } else {
     minDate.value = leftDate.value.startOf('year')
   }
 }
 
 const updateEndDate = () => {
+  const _minDate =
+    minDate.value && minDate.value.year() === 9999
+      ? undefined
+      : minDate.value || undefined
+
   setPlusInfinityRightYear()
 
   rightDate.value = rightDate.value.endOf('year')
@@ -509,6 +522,7 @@ const updateEndDate = () => {
     emit('pick', [minDate.value, endDate])
   } else {
     // Pas encore à +infini, continuer la sélection
+    minDate.value = _minDate
     maxDate.value = undefined
     rangeState.value.selecting = true
   }
