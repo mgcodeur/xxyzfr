@@ -7,6 +7,10 @@ export const basicCellProps = buildProps({
   cell: {
     type: definePropType<DateCell>(Object),
   },
+  cellSelectorPrefix: {
+    type: String,
+    default: '',
+  },
 } as const)
 
 export type BasicCellProps = ExtractPropTypes<typeof basicCellProps>

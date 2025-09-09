@@ -24,6 +24,7 @@
               ...cell,
               renderText: t('el.datepicker.months.' + months[cell.text]),
             }"
+            :cell-selector-prefix="basicSelector"
           />
         </td>
       </tr>

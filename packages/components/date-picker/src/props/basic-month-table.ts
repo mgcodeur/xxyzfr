@@ -5,6 +5,10 @@ import type { ExtractPropTypes } from 'vue'
 
 export const basicMonthTableProps = buildProps({
   ...datePickerSharedProps,
+  basicSelector: {
+    type: String,
+    default: '',
+  },
   selectionMode: selectionModeWithDefault('month'),
 })
 

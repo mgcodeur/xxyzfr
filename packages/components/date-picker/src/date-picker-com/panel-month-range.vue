@@ -112,6 +112,7 @@
             </div>
           </div>
           <month-table
+            basic-selector="debut"
             selection-mode="range"
             :date="leftDate"
             :min-date="minDate"
@@ -207,6 +208,7 @@
             </div>
           </div>
           <month-table
+            basic-selector="fin"
             selection-mode="range"
             :date="rightDate"
             :min-date="minDate"
